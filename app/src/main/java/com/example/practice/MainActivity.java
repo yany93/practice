@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Message;
 import android.provider.ContactsContract;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -20,14 +21,19 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
-    ArrayAdapter<String> adapter;
-    List<String> contactsList = new ArrayList<>();
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+//    ArrayAdapter<String> adapter;
+//    List<String> contactsList = new ArrayList<>();
+
+    private Button mButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mButton = findViewById(R.id.btn);
+        mButton.setOnClickListener(this);
 
 //        ListView contactsView = findViewById(R.id.contacts_view);
 //        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, contactsList);
@@ -38,6 +44,16 @@ public class MainActivity extends AppCompatActivity {
 //            readContacts();
 //        }
 
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btn:
+                Intent intent = new Intent(MainActivity.this, ListViewActivity.class);
+                startActivity(intent);
+        }
 
     }
 
